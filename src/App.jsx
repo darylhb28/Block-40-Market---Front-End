@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <Navigations token={token} setToken={setToken}/>
+      <NavBar token={token} setToken={setToken}/>
       <Routes>
         <Route path="/" element={<ProductList/>}/>
         <Route path="/account" element={<Account/>}/>
