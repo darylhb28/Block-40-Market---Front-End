@@ -6,6 +6,7 @@ export default function Account() {
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState("");
+  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,10 +29,26 @@ export default function Account() {
         const userData = await res.json();
         setUser(userData);
         fetchReviews(userData.id);
+        fetchOrders();
       } catch (err) {
         setError("Unauthorized. Please log in again.");
       }
     };
+
+    //Fetch orders by user
+    const fetchOrders = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/orders", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const userOrders = await res.json();
+      setOrders(userOrders);
+    } catch (err) {
+      console.error("Error fetching orders", err);
+      setError("Failed to fetch orders.");
+    }
+  };
+
 
     // Fetch reviews by user
     const fetchReviews = async (userId) => {
@@ -97,6 +114,25 @@ export default function Account() {
             </li>
           ))}
         </ul>
+      )}
+
+
+     <h3>Your Orders</h3>
+      {orders.length === 0 ? (
+        <p>You have yet to order any products.</p>
+      ) : (
+        <div>
+          {orders.map((order) => (
+            <div key={order.id}>
+              <h4>{order.product.title}</h4>
+              <img
+                src={order.product.image}
+                alt={order.product.title}
+                width="150"
+              />
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
