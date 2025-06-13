@@ -27,7 +27,6 @@ useEffect(() => {
     } else {
         const lowerSearch = searchTerm.toLowerCase();
         const filtered = products.filter(product => product.title.toLowerCase().includes(lowerSearch));
-            // possibly change product.title if name isn't the right word there
         setFilteredResults(filtered);
     }
 }, [searchTerm, products]);
@@ -55,15 +54,14 @@ return (
 
     <div className="productDisplay">
             {products &&
-                products.map((products) => 
-                    <div key={products.id}>
-                        <h1>{products.title}</h1>
-                        <img src={products.image} alt={product.title}/>
+                products.map((product) => 
+                    <div key={product.id}>
+                        <h1>{product.title}</h1>
+                        <img src={product.image} alt={product.title}/>
                         <button 
-                            onClick={() => navigate(`/product/${products.id}`)} >
+                            onClick={() => navigate(`/products/${product.id}`)} >
                             See Product Details
                         </button>
-                            {/* Change route if necessary */}
                     </div>
                 )
             }

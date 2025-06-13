@@ -27,6 +27,21 @@ useEffect(() => {
 const handleOrder = async (productId) =>{
     try {
     // add code to handle a product order to put it on the user page
+        const res = await fetch(`http://localhost:3000/orders`, {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ productId }),
+        });
+
+        if (!res.ok) {
+            throw new Error("Could not place your order.");
+        }
+
+        alert("Order placed successfully!");
+
     } catch (err) {
         console.error(err);
         alert ("Order was not possible.")
@@ -48,7 +63,7 @@ return (
                 <>
                     <button
                         onClick = {() => handleOrder(product.id)}>
-                        Order Now
+                        Order Now!
                     </button>
                 </>
             )}
