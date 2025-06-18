@@ -11,13 +11,17 @@ function ProductList () {
 
 
 useEffect(() => {
-    const apiCall = async () => {
-        const res = await fetchAllProducts()
-            //change above name if necessary
-        setProducts(res)
-        setFilteredResults(res);
+  async function fetchAllProducts(){
+        try {
+            const response = await fetch ("http://localhost:3000/products")
+            const res = await response.json()
+            setProducts(res)
+        } catch (error){
+            console.log(error)
+        }
+
     }
-        apiCall();
+        fetchAllProducts();
 }, []);
 
 
@@ -57,7 +61,7 @@ return (
                 products.map((product) => 
                     <div key={product.id}>
                         <h1>{product.title}</h1>
-                        <img src={product.image} alt={product.title}/>
+                        <img src={product.image_url} alt={product.title}/>
                         <button 
                             onClick={() => navigate(`/products/${product.id}`)} >
                             See Product Details
