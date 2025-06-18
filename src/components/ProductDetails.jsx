@@ -7,7 +7,6 @@ function ProductDetails () {
     const {id} = useParams();
     const [product, setProduct] = useState(null);
     const [reviews, setReviews] = useState([])
-    const [username, setUsername] = useState("")
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState("")
     const navigate = useNavigate();
@@ -80,13 +79,17 @@ return (
                 <img src={product.image_url} alt={product.title} />
                 <h2>{product.description}</h2>
                         
-                {reviews && ( //need to make it so it can display multiple reviews with a reviews.map function
-                    <div> 
+              {reviews && (
+                    <>
                         <h2>Reviews</h2>
-                        <h3>From {reviews.user_id}: {reviews.comment}</h3>
-                        <h3>Rating: {reviews.rating}</h3>
-                    </div>
-                )}
+                            {reviews.map((review) => (
+                                <div key={review.id}>
+                                    <h3>From User {review.user_id}: {review.comment}</h3>
+                                    <h3>Rating: {review.rating}</h3>
+                                </div>
+                        ))}
+                    </>
+                    )}
 
             {token && (
                 <>
