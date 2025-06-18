@@ -19,7 +19,7 @@ function NavBar({token, setToken}){
                     </>
                 ) : (
                     <>
-                    <Link to="/product/:id">Products</Link>
+                    <Link to="/">Products</Link>
                     <Link to="/login">Login</Link>
                     <Link to="/register">Register</Link>
                     </>

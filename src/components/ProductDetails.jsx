@@ -17,20 +17,21 @@ function ProductDetails () {
 useEffect(() => {
     async function fetchSingleProduct(){
         try {
-            const response = await fetch(`http://localhost:3000/products${id}`)
+            const response = await fetch(`http://localhost:3000/products/${id}`)
             const res = await response.json()
+            console.log(res)
             setProduct(res);
         } catch (err) {
             console.error(err)
         }
     };
-    fetchSingleProduct;
-}, [id]);
+    fetchSingleProduct();
+}, []);
 
 useEffect(()=>{
     async function getReviews(){
         try {
-            const response = await fetch (`http://localhost:3000/products${id}/reviews`)
+            const response = await fetch (`http://localhost:3000/products/${id}/reviews`)
             const res = await response.json()
             setReviews(res)
         } catch (error){
