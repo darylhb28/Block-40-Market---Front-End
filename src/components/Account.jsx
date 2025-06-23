@@ -42,6 +42,7 @@ export default function Account() {
         headers: { Authorization: `Bearer ${token}` },
       });
       const userOrders = await res.json();
+      console.log(userOrders)
       setOrders(userOrders);
     } catch (err) {
       console.error("Error fetching orders", err);
@@ -124,12 +125,9 @@ export default function Account() {
         <div>
           {orders.map((order) => (
             <div key={order.id}>
-              <h4>{order.product.title}</h4>
-              <img
-                src={order.product.image}
-                alt={order.product.title}
-                width="150"
-              />
+              <h4>{order.id}</h4>
+              <h4>{order.date}</h4>
+              <h4>{order.note}</h4>
             </div>
           ))}
         </div>
