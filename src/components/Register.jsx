@@ -5,27 +5,31 @@ import { useNavigate } from "react-router-dom";
 export default function Register({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/users", {
+      const response = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
-      if (response.ok) {
-        saveToken(data.token, setToken);
+      console.log(data)
+      
+      if (data) {
+        setSuccessMessage("User successfully created")
+        saveToken(data, setToken);
         navigate("/");
       } else {
-        setMessage(data.message || "Registration failed.");
+        setErrorMessage("Registration failed.");
       }
     } catch (err) {
-      setMessage("An error occurred. Please try again.");
+      setErrorMessage("An error occurred. Please try again.");
     }
   };
 
@@ -47,7 +51,8 @@ export default function Register({ setToken }) {
         required
       />
       <button type="submit">Register</button>
-      {message && <p>{message}</p>}
+      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
     </form>
   );
 }

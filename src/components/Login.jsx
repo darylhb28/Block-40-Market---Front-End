@@ -11,18 +11,19 @@ export default function Login({ setToken }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/users", {
+      const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
-      if (response.ok) {
-        saveToken(data.token, setToken);
+      console.log(data)
+      if (data) {
+        saveToken(data, setToken);
         navigate("/");
       } else {
-        setMessage(data.message || "Login failed.");
+        setMessage( "Login failed.");
       }
     } catch (err) {
       setMessage("An error occurred. Please try again.");
