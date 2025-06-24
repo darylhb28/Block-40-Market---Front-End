@@ -65,7 +65,6 @@ function ProductDetails() {
   async function handleOrder(e){
     e.preventDefault();
     try{   
-      // change url if needed
       const response = await fetch(`http://localhost:3000/orders`, {
         method: "POST",
         headers: {
@@ -75,7 +74,7 @@ function ProductDetails() {
         body: JSON.stringify({
           date: new Date().toISOString(),
           note: `1 ${product?.title}`,
-          product_id: product?.id
+          product_id: product?.id // not needed for backend query (yet)
         }),
       });
       console.log(response)
