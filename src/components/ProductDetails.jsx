@@ -62,6 +62,36 @@ function ProductDetails() {
     }
   }
 
+  async function handleOrder(e){
+    e.preventDefault();
+    try{   
+      // change url if needed
+      const response = await fetch(`http://localhost:3000/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          date: new Date().toISOString(),
+          note: `1 ${product?.title}`,
+          product_id: product?.id
+        }),
+      });
+      console.log(response)
+      if (!response.ok) {
+        throw new Error("Could not place order.")
+      }
+
+      const res = await response.json();
+      alert("Order placed.");
+ 
+  } catch (err) {
+      console.error(err);
+      alert("Order was not possible.");
+    }
+  }
+
   return (
     <div className="productDetailContainer">
       {product && (
@@ -108,6 +138,11 @@ function ProductDetails() {
               <button type="submit">Submit Review</button>
             </form>
           )}
+          <div>
+            <button className="orderButton" onClick={handleOrder}>
+              Order Now
+            </button>
+          </div>
 
           <button className="returnButton" onClick={() => navigate(`/`)}>
             Return
