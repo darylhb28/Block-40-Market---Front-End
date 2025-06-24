@@ -1,42 +1,189 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+form {
+  max-width: 400px;
+  margin: 3rem auto;
   padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form h2 {
+  margin-bottom: 1.5rem;
+  color: #4b2e1e;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+form input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form button {
+  background-color: #4b2e1e;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+form button:hover {
+  background-color: #633d2d;
 }
 
-.card {
-  padding: 2em;
+form p {
+  color: red;
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
-.read-the-docs {
-  color: #888;
+/* Product List */
+.searchBar {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+#searchInput {
+  padding: 0.5rem 1rem;
+  width: 300px;
+  max-width: 90%;
+  margin-top: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+#searchResults h3 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #4b2e1e;
+}
+
+/* Product grid */
+.productDisplay {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.productDisplay > div {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.productDisplay > div:hover {
+  transform: translateY(-5px);
+}
+
+.productDisplay h1 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.productDisplay img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.productDisplay button {
+  padding: 0.5rem 1rem;
+  background-color: #4b2e1e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.productDisplay button:hover {
+  background-color: #633d2d;
+}
+
+.productDetailContainer {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.productTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.productPrice {
+  color: #4b2e1e;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.productImage {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.productDescription {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.reviewSection {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.singleReview {
+  background-color: #f6f1eb;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.reviewForm {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.reviewForm input,
+.reviewForm select {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.reviewForm button,
+.returnButton {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4b2e1e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.reviewForm button:hover,
+.returnButton:hover {
+  background-color: #633d2d;
 }
