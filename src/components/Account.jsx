@@ -17,7 +17,6 @@ export default function Account() {
       return;
     }
 
-    // Fetch user info
     const fetchUser = async () => {
       try {
         const res = await fetch("http://localhost:3000/users/me", {
@@ -35,23 +34,20 @@ export default function Account() {
       }
     };
 
-    //Fetch orders by user
     const fetchOrders = async () => {
-    try {
-      const res = await fetch("http://localhost:3000/orders", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const userOrders = await res.json();
-      console.log(userOrders)
-      setOrders(userOrders);
-    } catch (err) {
-      console.error("Error fetching orders", err);
-      setError("Failed to fetch orders.");
-    }
-  };
+      try {
+        const res = await fetch("http://localhost:3000/orders", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const userOrders = await res.json();
+        console.log(userOrders);
+        setOrders(userOrders);
+      } catch (err) {
+        console.error("Error fetching orders", err);
+        setError("Failed to fetch orders.");
+      }
+    };
 
-
-    // Fetch reviews by user
     const fetchReviews = async (userId) => {
       try {
         const res = await fetch("http://localhost:3000/products", {
@@ -92,46 +88,52 @@ export default function Account() {
   }, []);
 
   if (error) {
-    return <p style={{ color: "red" }}>{error}</p>;
+    return <p className="error-message">{error}</p>;
   }
 
   if (!user) {
-    return <p>Loading account information...</p>;
+    return <p className="loading-message">Loading account information...</p>;
   }
 
   return (
-    <div>
-      <h2>Welcome, {user.username}!</h2>
-      <h3>Your Reviews</h3>
-      {reviews.length === 0 ? (
-        <p>You have not posted any reviews yet.</p>
-      ) : (
-        <ul>
-          {reviews.map((review) => (
-            <li key={review.id}>
-              <strong>{review.productTitle}</strong><br />
-              Rating: {review.rating}/5<br />
-              Comment: {review.comment}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="accountContainer">
+      <h2 className="accountWelcome">Welcome, {user.username}!</h2>
 
+      <section className="accountSection" id="userReviews">
+        <h3>Your Reviews</h3>
+        {reviews.length === 0 ? (
+          <p>You have not posted any reviews yet.</p>
+        ) : (
+          <ul className="reviewList">
+            {reviews.map((review) => (
+              <li className="singleReview" key={review.id}>
+                <strong>{review.productTitle}</strong>
+                <br />
+                Rating: {review.rating}/5
+                <br />
+                Comment: {review.comment}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
-     <h3>Your Orders</h3>
-      {orders.length === 0 ? (
-        <p>You have yet to order any products.</p>
-      ) : (
-        <div>
-          {orders.map((order) => (
-            <div key={order.id}>
-              <h4>{order.id}</h4>
-              <h4>{order.date}</h4>
-              <h4>{order.note}</h4>
-            </div>
-          ))}
-        </div>
-      )}
+      <section className="accountSection" id="userOrders">
+        <h3>Your Orders</h3>
+        {orders.length === 0 ? (
+          <p>You have yet to order any products.</p>
+        ) : (
+          <div className="orderList">
+            {orders.map((order) => (
+              <div className="orderCard" key={order.id}>
+                <h4>Order #{order.id}</h4>
+                <p>Date: {new Date(order.date).toLocaleDateString()}</p>
+                <p>Note: {order.note}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

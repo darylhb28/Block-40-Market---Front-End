@@ -12,7 +12,7 @@ function NavBar({token, setToken}){
     return(
     <div>
         <nav>
-            <h1> Coffee </h1>
+            <h1>Grumpy Latte Co.</h1>
             <div>
                 <Link to="/">Home</Link>
                 {token ? (
