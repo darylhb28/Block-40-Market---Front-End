@@ -10,7 +10,7 @@ import {getToken} from './components/Auth'
 import './App.css'
 
 function App() {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(getToken() || null);
 
   return (
     <>

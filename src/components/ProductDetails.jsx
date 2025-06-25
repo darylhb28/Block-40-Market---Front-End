@@ -96,7 +96,7 @@ function ProductDetails() {
       {product && (
         <div key={product.id} id="singleProductDisplay">
           <h1 className="productTitle">{product.title}</h1>
-          <h2 className="productPrice">${product.price}</h2>
+          <h2 className="productPrice">${Number(product.price).toFixed(2)}</h2>
           <img className="productImage" src={product.image_url} alt={product.title} />
           <h2 className="productDescription">{product.description}</h2>
 

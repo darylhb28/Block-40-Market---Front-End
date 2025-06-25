@@ -33,7 +33,10 @@ function ProductList () {
     return (
         <div>
             <div className="searchBar">
-                <h1>Search for a Product</h1>
+                <h1>Grumpy Latte Co.</h1>
+                <h4><em>Powered by regret and caffeine</em></h4>
+                <br></br>
+                <h3>Search for a Product</h3>
                 <input
                     id="searchInput"
                     type="text"
